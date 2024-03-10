@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import "variables";
+
+:root{
+  color: $text;
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: rgb(24,28,28);
+  background: linear-gradient(0deg, rgba(24,28,28,1) 0%, rgba(53,63,68,1) 100%);
+  background-repeat: no-repeat;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+app-header {
+  header {
+    height: 30vh;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    top: 0;
+    margin: 0;
+    background:linear-gradient(rgba(248, 222, 222, 0.05), rgba(0, 0, 0, 0));
+    backdrop-filter: blur(50px);
+
+  }
+
+  hr {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+}
+app-button{
+
+  $blur:100px;
+  @function addBlur($value, $inc){
+    @return calc(#{$value} + #{$inc});
+  }
+  padding: 0;
+  margin: 0;
+
+  .btn {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $background;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+  .btn-primary {
+    background-color: $primary;
+    color: $background;
+  }
+  .btn-secondary {
+    background-color: $secondary;
+    color: #fff;
+  }
+  .btn-success {
+    background-color: $accent;
+    color: $background;
+  }
+  .btn-danger {
+    background-color: $background;
+    color: $primary;
+  }
+  .btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+  .navButton{
+    //background:linear-gradient(rgba(0, 0, 0, 0), rgba(199, 48, 48, 0.1), rgba(0, 0, 0, 0));
+    background: linear-gradient(87deg, rgba(0,0,0,0) 0%, rgb(29, 30, 30,0.5) 50%, rgba(0,0,0,0) 100%);
+    transition: .3s ease;
+    color: $text;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 0;
+    //backdrop-filter: brightness(.75) opacity(1)  blur($blur -20px);
+
+
+    backdrop-filter: blur($blur) brightness(0.25) opacity(0.15);
+  }
+  .navButton:hover{
+    backdrop-filter: blur(addBlur($blur, 50px)) brightness(1.25) opacity(0.45);
+  }
+
+  .activeRoute{
+    backdrop-filter: blur(35px) brightness(.25) opacity(.85);
+  }
+}
+app-navbar{
+
+  nav{
+    display: block;
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient($blueRedGradient);
+  }
+  .navContainer{
+    //backdrop-filter: blur(0px);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    column-gap: 2rem;
+  }
+
+
+  .tile{
+
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.glass{
+  backdrop-filter: blur(40px);
+  width: 100%;
+  height: 100%;
+}
