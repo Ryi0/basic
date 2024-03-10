@@ -1,43 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import "variables";
 
+
 :root{
   color: $text;
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   background: rgb(24,28,28);
-  background: linear-gradient(0deg, rgba(24,28,28,1) 0%, rgba(53,63,68,1) 100%);
-  background-repeat: no-repeat;
+
   height: 100%;
   overflow-x: hidden;
+  font-size: 16pt;
+}
+
+main{
+  margin-top: 13vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  padding: .1vh 1em;
+  flex: 1 1 auto;
+  background: linear-gradient(0deg, rgba(24, 28, 28, 1) 0%, rgba(53, 63, 68, 1) 100%) no-repeat;
+}
+
+body{
+  text-align: center;
+  justify-content: center;
 }
 
 app-header {
+  flex: 0 0 auto;
+
   header {
-    height: 30vh;
+    z-index: 100;
+    height: 12vh;
     padding: 0;
-    overflow: hidden;
     position: fixed;
     left: 0;
     width: 100vw;
     top: 0;
     margin: 0;
-    background:linear-gradient(rgba(248, 222, 222, 0.05), rgba(0, 0, 0, 0));
-    backdrop-filter: blur(50px);
 
+    background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, .1));
   }
 
-  hr {
-    border: 2px solid rgba(0, 0, 0, 0.1);
+  .liner{
+    padding: 0;
+    margin: 0;
+    z-index: 0;
+    width: 100%;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    backdrop-filter: blur(10px);
+    height: 100%;
   }
 }
-app-button{
 
+app-button{
+  $base-blur: 75px;
   $blur:100px;
+
   @function addBlur($value, $inc){
     @return calc(#{$value} + #{$inc});
   }
+
+
   padding: 0;
   margin: 0;
 
@@ -74,40 +100,84 @@ app-button{
     opacity: 0.65;
     cursor: not-allowed;
   }
-  .navButton{
-    //background:linear-gradient(rgba(0, 0, 0, 0), rgba(199, 48, 48, 0.1), rgba(0, 0, 0, 0));
-    background: linear-gradient(87deg, rgba(0,0,0,0) 0%, rgb(29, 30, 30,0.5) 50%, rgba(0,0,0,0) 100%);
-    transition: .3s ease;
+  //.navButton{
+  //  //background:linear-gradient(rgba(0, 0, 0, 0), rgba(199, 48, 48, 0.1), rgba(0, 0, 0, 0));
+  //  background: linear-gradient(87deg, rgba(0,0,0,0) 0%, rgb(29, 30, 30,0.5) 50%, rgba(0,0,0,0) 100%);
+  //  transition: .3s ease;
+  //  color: $text;
+  //  width: 100%;
+  //  height: 100%;
+  //  padding: 0 1rem;
+  //  border-radius: 0.5rem;
+  //  font-size: 1.2em;
+  //  cursor: pointer;
+  //  margin: 0;
+  //  //backdrop-filter: brightness(.75) opacity(1)  blur($blur -20px);
+  //
+  //
+  //  backdrop-filter: blur($blur) brightness(0.25) opacity(0.15);
+  //}
+  //.navButton:hover{
+  //  backdrop-filter: blur(addBlur($blur, 50px)) brightness(1.25) opacity(0.45);
+  //}
+  //
+  //.activeRoute{
+  //  backdrop-filter: blur(35px) brightness(.25) opacity(.85);
+  //}
+
+
+
+  @mixin navButton-base {
+    background: linear-gradient(87deg, rgba(0, 0, 0, 0) 0%, rgb(29, 30, 30, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+    transition: 0.3s ease;
     color: $text;
     width: 100%;
     height: 100%;
     padding: 0 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-size: 1.2em;
     cursor: pointer;
     margin: 0;
-    //backdrop-filter: brightness(.75) opacity(1)  blur($blur -20px);
-
-
-    backdrop-filter: blur($blur) brightness(0.25) opacity(0.15);
-  }
-  .navButton:hover{
-    backdrop-filter: blur(addBlur($blur, 50px)) brightness(1.25) opacity(0.45);
+    backdrop-filter: blur($base-blur) brightness(0.25) opacity(0.15);
   }
 
-  .activeRoute{
-    backdrop-filter: blur(35px) brightness(.25) opacity(.85);
+  @mixin navButton-hover {
+    backdrop-filter: blur(addBlur($base-blur, 50px)) brightness(1.25) opacity(0.45);
   }
+
+  @mixin navButton-active {
+    backdrop-filter: blur(addBlur($base-blur, 35px)) brightness(0.25) opacity(0.75);
+    &:hover {
+      backdrop-filter: blur(addBlur($base-blur, 100px)) brightness(.35) opacity(.95);
+    }
+  }
+
+  .navButton {
+    @include navButton-base;
+
+    &:hover {
+      @include navButton-hover;
+    }
+
+    &.activeRoute {
+      @include navButton-active;
+    }
+  }
+
 }
 app-navbar{
 
   nav{
+
     display: block;
     width: 100%;
     height: 10vh;
     margin: 0;
     padding: 0;
+    //opacity: .95;
     background: linear-gradient($blueRedGradient);
+    filter: blur(0px) brightness(1) opacity(.98);
+    backdrop-filter: blur(100px) brightness(.35) opacity(.15);
   }
   .navContainer{
     //backdrop-filter: blur(0px);
