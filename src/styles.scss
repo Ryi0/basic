@@ -45,7 +45,7 @@ main{
  // mask: linear-gradient(to bottom, black 25% 70%, transparent 100%);
   backdrop-filter: blur($base-blur+15px) saturate(4) brightness(.5);
   width: 100%;
-  height: .5vh;
+  height: 0vh;
 }
 
 
@@ -55,28 +55,18 @@ app-navbar{
   between the content and the navbar.
   The padding is what is used to size the div
  */
-  .HrWrap{
- // background: $dar;
-   // mix-blend-mode: hard-light;
-   backdrop-filter: blur(15px) saturate(5) brightness(.7);
-   padding:  0.5vh 0 0 0; //only change the first value as it belongs to padding top
-    position: relative;
-    width: 100vw;
 
-  }
   /**
 This contains the navContainer and
 To see what exactly it contains, uncomment *101
  */
   .liner{
+    display: flex;
+    flex-direction: row;
    //@include ContainerBackgroundMixin; //*101
-    //background-blend-mode: hard-light;
-    //background-color: rgba(255, 0, 0, 0.57);
-  //  backdrop-filter: blur(5px);
-  //  border-top: .5em solid $background;
     top:0vh;
     padding: 0;
-    position: static; //this makes the glass div appear under the navbar.
+    position: relative; //this makes the glass div appear under the navbar.
     left: 0;
     width: 100vw;
     height: fit-content;
@@ -85,7 +75,7 @@ To see what exactly it contains, uncomment *101
 
 
   /* This can be set on the ::before pseudo of the element it is applied to. */
-  .navContainer:before {
+  .navContainer::before {
     content: '';
     /* This layer is positioned between some element and its background. */
     position: absolute;
@@ -124,13 +114,23 @@ To see what exactly it contains, uncomment *101
     padding: 0;
   }
 
+  .HrWrap{
+    order: 2;
+    // background: $dar;
+    // mix-blend-mode: hard-light;
+    backdrop-filter: blur(15px) saturate(5) brightness(.7);
+    padding:  0.5vh 0 0 0; //only change the first value as it belongs to padding top
+    position: fixed;
+    width: 100vw;
+  }
 
   /**
   The buttons in the navbar are each contained inside a tile.
    */
   .tile{
-   // border-top: 5px solid;
-    //border-bottom: 5px solid;
+    border-top: .1vh solid;
+    border-bottom: .1vh solid;
+    border-color: black;
     font-size: 1rem;
     padding: 0;
     margin: 0;
@@ -205,6 +205,28 @@ app-header {
   }
 }
 
+@media (max-width: 767px) {
+
+  app-navbar {
+    .liner{
+      flex-direction: column;
+    }
+    .navContainer {
+      flex-direction: column;
+      height: auto; // Allow vertical expansion on mobile
+    }
+    .tile {
+      width: 100%;
+      height: auto; // Allow vertical expansion on mobile
+    }
+  }
+  app-button {
+    .navButton {
+      padding: 0.5rem; // Reduce padding on mobile
+      font-size: 0.9rem; // Reduce font size on mobile
+    }
+  }
+}
 
 
 

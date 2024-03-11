@@ -10,10 +10,10 @@ import {NavbarComponent} from "../navbar/navbar.component";
   template: `
 
     <header>
-      <div class="glass"></div>
       <app-navbar></app-navbar>
 
     </header>
+
   `,
   styles: ``
 })
