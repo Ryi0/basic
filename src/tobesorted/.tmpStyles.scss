@@ -1,0 +1,226 @@
+//@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+//@import "variables";
+//
+//$base-blur: 5px;
+//$blur:100px;
+//
+//@function addBlur($value, $inc){
+//  @return calc(#{$value} + #{$inc});
+//}
+//:root{
+//  color: $text;
+//  font-family: "Josefin Sans", sans-serif;
+//  font-optical-sizing: auto;
+//  font-style: normal;
+//  background: rgb(24,28,28);
+//
+//  height: 100%;
+//  overflow-x: hidden;
+//  font-size: 16pt;
+//}
+//
+//main{
+//  margin-top: 13vh;
+//  margin-left: 1vw;
+//  margin-right: 1vw;
+//  padding: .1vh 1em;
+//  flex: 1 1 auto;
+//  background: linear-gradient(0deg, rgba(24, 28, 28, 1) 0%, rgba(53, 63, 68, 0.63) 100%) no-repeat;
+//}
+//.liner2{
+//
+//  //top:0vh;
+//  //z-index: 99;
+//  //height: 50vh;
+//  //padding: 0;
+//  //position: fixed;
+//  //left: 0;
+//  //width: 100vw;
+//  //
+//  //margin: 0;
+//  //backdrop-filter: blur(155px);
+//  //mask-image:linear-gradient(rgba(42, 42, 42, 0.51), rgba(0, 0, 0, 0));
+//}
+//body{
+//
+//  text-align: center;
+//  justify-content: center;
+//}
+//
+//app-header {
+//  flex: 0 0 auto;
+//
+//  header {
+//
+//    z-index: 100;
+//
+//    height: 10.5vh;
+//    padding: 0;
+//    position: fixed;
+//    left: 0;
+//    width: 100vw;
+//    top: 0;
+//    margin: 0;
+//    backdrop-filter: blur(15px) hue-rotate(10deg) saturate(11) ;
+//    background-image:linear-gradient(rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0));
+//  }
+//  header:after {
+//    //
+//    //z-index: 100;
+//    //height: 15vh;
+//    //padding: 0;
+//    //position: fixed;
+//    //left: 0;
+//    //width: 100vw;
+//    //top: 0;
+//    //margin: 0;
+//  }
+//
+//}
+//.liner{
+//  top:0vh;
+//  z-index: 99;
+//  height: 5vh;
+//  padding: 0;
+//  position: relative;
+//  left: 0;
+//  width: 100vw;
+//  margin: 0;
+//}
+//
+//app-button{
+//
+//
+//
+//  padding: 0;
+//  margin: 0;
+//
+//  .btn {
+//
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    width: 100%;
+//    height: 100%;
+//    color: $background;
+//    padding: 0.5rem 1rem;
+//    border-radius: 0.25rem;
+//    font-size: 1rem;
+//    cursor: pointer;
+//  }
+//  .btn-primary {
+//    background-color: $primary;
+//    color: $background;
+//  }
+//  .btn-secondary {
+//    background-color: $secondary;
+//    color: #fff;
+//  }
+//  .btn-success {
+//    background-color: $accent;
+//    color: $background;
+//  }
+//  .btn-danger {
+//    background-color: $background;
+//    color: $primary;
+//  }
+//  .btn:disabled {
+//    opacity: 0.65;
+//    cursor: not-allowed;
+//  }
+//
+//
+//  @mixin navButton-base {
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    transition: 0.225s ease-in-out;
+//    color: $text;
+//    width: 100%;
+//    height: 100%;
+//    padding: 0 1rem;
+//    border-radius: 0;
+//    font-size: 1.2em;
+//    cursor: pointer;
+//    margin: 0;
+//    backdrop-filter: blur($base-blur) ;
+//    // mask-image:linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.95));
+//    // mask-image:linear-gradient(rgba(42, 42, 42, 0.51), rgba(0, 0, 0, 0));
+//  }
+//
+//  @mixin navButton-hover {
+//    //  mask-image:linear-gradient(rgba(42, 42, 42, 0.51), rgba(0, 0, 0, 0));
+//    backdrop-filter: blur(addBlur($base-blur, 120px)) ;
+//  }
+//
+//  @mixin navButton-active {
+//    // background-image:linear-gradient(rgba(0, 0, 0, 0.24), rgba(58, 58, 58, 0));
+//    // mask-image:linear-gradient(rgba(42, 42, 42, 0.04), rgba(0, 0, 0, 0));
+//    transition: 270ms ease-in-out;
+//    color: $primary;
+//
+//    //filter: hue-rotate(60deg) saturate(5) brightness(1.125);
+//    //background-color: transparentize($background, .45);
+//    background: linear-gradient(87deg, rgba(0, 0, 0, 0) 0%, transparentize($secondary, .725), rgba(0, 0, 0, 0) 100%);
+//    // background-image: linear-gradient(rgba(0,0,0,0) 0%, $blueRedGradient 99% ,rgba(0,0,0,0) 100%,  );
+//    backdrop-filter: blur(addBlur($base-blur, 65px)) brightness(.1425) opacity(1)  ;
+//    &:hover {
+//      backdrop-filter: blur(addBlur($base-blur, 110px))
+//    }
+//  }
+//
+//
+//  .navButton {
+//    @include navButton-base;
+//
+//    &:hover {
+//      @include navButton-hover;
+//    }
+//
+//    &.activeRoute {
+//      @include navButton-active;
+//    }
+//  }
+//
+//}
+//app-navbar{
+//
+//  nav{
+//    background: linear-gradient(87deg, rgba(0, 0, 0, 0) 0%, transparentize($accent, .825), rgba(0, 0, 0, 0) 100%);
+//    mix-blend-mode: color-dodge;
+//    display: block;
+//    width: 100%;
+//    height: 10vh;
+//    margin: 0;
+//    padding: 0;
+//    // background: linear-gradient($blueRedGradient);
+//    //filter: blur(0px) brightness(1) opacity(.8);
+//    //backdrop-filter: blur(5px) brightness(.35) opacity(.985);
+//  }
+//  .navContainer{
+//    //background-color: rgba(0, 0, 0, 0.31);
+//    //background-image: $blueRedGradient;
+//    height: 100%;
+//    display: flex;
+//    flex-direction: row;
+//    margin: 0;
+//    padding: 0;
+//    column-gap: 2rem;
+//  }
+//
+//  .tile{
+//    font-size: 1rem;
+//    padding: 0;
+//    margin: 0;
+//    width: 100%;
+//    height: 100%;
+//  }
+//}
+//
+//.glass{
+//  //background-image: linear-gradient(rgb(211, 211, 211), rgb(0, 0, 0));
+//  backdrop-filter: blur($base-blur+10px);
+//  mask-image:linear-gradient(rgba(42, 42, 42, 0.05), rgba(0, 0, 0, 0));
+//  width: 100%;
+//  height: 100%;
+//}

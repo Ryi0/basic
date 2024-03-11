@@ -8,11 +8,12 @@ import {NavbarComponent} from "../navbar/navbar.component";
     NavbarComponent
   ],
   template: `
+
     <header>
+      <div class="glass"></div>
       <app-navbar></app-navbar>
 
     </header>
-
   `,
   styles: ``
 })

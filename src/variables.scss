@@ -1,12 +1,19 @@
-$text: hsl(224, 100%, 98%);
+$text: hsl(246, 100%, 98%);
 $background: hsl(180, 5%, 17%);
-$primary: hsl(149, 100%, 88%);
-$secondary: hsl(210, 100%, 85%);
-$accent: hsl(165, 100%, 70%);
+$primary: hsl(39, 70%, 65%);
+$secondary: hsl(328, 40%, 50%);
+$accent: hsl(0, 48%, 51%);
 
-
+$bgGrad:linear-gradient(0deg, rgba(24, 28, 28, 1) 0%, rgba(53, 63, 68, 0.63) 100%) no-repeat;
 $darkBlue:hsl(210, 100%, 15%);
 $darkRed:hsl(333, 63%, 31%);
 
 
+
 $blueRedGradient:($darkBlue, $darkRed);
+
+$containerBackground: (
+  background-color: #e5e5f7,
+  opacity: 1,
+  background: repeating-linear-gradient( -45deg, #444cf7, #444cf7 5px, #e5e5f7 5px, #e5e5f7 25px )
+)

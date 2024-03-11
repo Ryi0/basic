@@ -12,7 +12,6 @@ import {routes} from "../../app.routes";
   ],
   template: `
     <div
-      class="btn"
       (click)="handleClick($event)"
       [ngClass]="buttonClass"
       [routerLink]="btnRoute()"
@@ -28,7 +27,7 @@ import {routes} from "../../app.routes";
 })
 export class ButtonComponent {
   @Input() type: 'button' | 'routingButton' = 'button';
-  @Input() buttonClass: string = 'btn-primary';
+  @Input() buttonClass: string = 'btn';
   @Output() onClick = new EventEmitter<Event>();
   //@Input() class:'navButton' | 'btn' = "btn";
   @Input() route:string|undefined;

@@ -1,17 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import "variables";
 
+$base-blur: 5px;
+$blur:100px;
 
+@mixin ContainerBackgroundMixin{
+  @each $K, $V in $containerBackground{
+    #{$K}:$V;
+  }
+}
+
+@function addBlur($value, $inc){
+  @return calc(#{$value} + #{$inc});
+}
 :root{
   color: $text;
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   background: rgb(24,28,28);
-
   height: 100%;
   overflow-x: hidden;
   font-size: 16pt;
+}
+
+body{
+  text-align: center;
+  justify-content: center;
 }
 
 main{
@@ -20,55 +35,118 @@ main{
   margin-right: 1vw;
   padding: .1vh 1em;
   flex: 1 1 auto;
-  background: linear-gradient(0deg, rgba(24, 28, 28, 1) 0%, rgba(53, 63, 68, 1) 100%) no-repeat;
+ // background: linear-gradient(0deg, rgba(24, 28, 28, 1) 0%, rgba(53, 63, 68, 0.63) 100%) no-repeat;
 }
 
-body{
-  text-align: center;
-  justify-content: center;
+/**
+  Replicates glass.
+ */
+.glass{
+ // mask: linear-gradient(to bottom, black 25% 70%, transparent 100%);
+  backdrop-filter: blur($base-blur+15px) saturate(4) brightness(.5);
+  width: 100%;
+  height: .5vh;
 }
 
-app-header {
-  flex: 0 0 auto;
 
-  header {
-    z-index: 100;
-    height: 12vh;
+app-navbar{
+/**
+  This positions itself outside the liner div amd outside the navContainer div and serves as an intermediate
+  between the content and the navbar.
+  The padding is what is used to size the div
+ */
+  .HrWrap{
+ // background: $dar;
+   // mix-blend-mode: hard-light;
+   backdrop-filter: blur(15px) saturate(5) brightness(.7);
+   padding:  0.5vh 0 0 0; //only change the first value as it belongs to padding top
+    position: relative;
+    width: 100vw;
+
+  }
+  /**
+This contains the navContainer and
+To see what exactly it contains, uncomment *101
+ */
+  .liner{
+   //@include ContainerBackgroundMixin; //*101
+    //background-blend-mode: hard-light;
+    //background-color: rgba(255, 0, 0, 0.57);
+  //  backdrop-filter: blur(5px);
+  //  border-top: .5em solid $background;
+    top:0vh;
     padding: 0;
-    position: fixed;
+    position: static; //this makes the glass div appear under the navbar.
     left: 0;
     width: 100vw;
-    top: 0;
+    height: fit-content;
     margin: 0;
-
-    background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, .1));
   }
 
-  .liner{
+
+  /* This can be set on the ::before pseudo of the element it is applied to. */
+  .navContainer:before {
+    content: '';
+    /* This layer is positioned between some element and its background. */
+    position: absolute;
+    /* This should not affect the contents of the container. */
+    z-index: -1;
+    /* The blur size should be anything below `0` so it will extend to the outside. */
+    inset: -5vh;
+
+
+    mask: linear-gradient(to bottom, black 0% 85%, transparent 100%);
+    backdrop-filter: blur($base-blur) ;
+    /* This merges the masks above so only the overlapping pixels are rendered. */
+    /* This creates the illusion of a fade-out mask. */
+  }
+
+
+  nav{
+    display: block;
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    padding: 0;
+  }
+  /**
+    This is where all the buttons are contained inside of the navbar
+   */
+  .navContainer{
+    background-image: linear-gradient( transparentize($text, .75), transparentize($background, .195));
+
+    //background-blend-mode: hard-light;
+    //backdrop-filter: blur(5px);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  /**
+  The buttons in the navbar are each contained inside a tile.
+   */
+  .tile{
+   // border-top: 5px solid;
+    //border-bottom: 5px solid;
+    font-size: 1rem;
     padding: 0;
     margin: 0;
-    z-index: 0;
+    //background: transparentize($background, .75);
+
     width: 100%;
-    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-    backdrop-filter: blur(10px);
     height: 100%;
   }
+
 }
 
 app-button{
-  $base-blur: 75px;
-  $blur:100px;
-
-  @function addBlur($value, $inc){
-    @return calc(#{$value} + #{$inc});
-  }
-
-
+  font-size: 1.6rem;
   padding: 0;
   margin: 0;
-
   .btn {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,128 +157,54 @@ app-button{
     border-radius: 0.25rem;
     font-size: 1rem;
     cursor: pointer;
-}
-  .btn-primary {
-    background-color: $primary;
-    color: $background;
   }
-  .btn-secondary {
-    background-color: $secondary;
-    color: #fff;
-  }
-  .btn-success {
-    background-color: $accent;
-    color: $background;
-  }
-  .btn-danger {
-    background-color: $background;
-    color: $primary;
-  }
-  .btn:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-  //.navButton{
-  //  //background:linear-gradient(rgba(0, 0, 0, 0), rgba(199, 48, 48, 0.1), rgba(0, 0, 0, 0));
-  //  background: linear-gradient(87deg, rgba(0,0,0,0) 0%, rgb(29, 30, 30,0.5) 50%, rgba(0,0,0,0) 100%);
-  //  transition: .3s ease;
-  //  color: $text;
-  //  width: 100%;
-  //  height: 100%;
-  //  padding: 0 1rem;
-  //  border-radius: 0.5rem;
-  //  font-size: 1.2em;
-  //  cursor: pointer;
-  //  margin: 0;
-  //  //backdrop-filter: brightness(.75) opacity(1)  blur($blur -20px);
-  //
-  //
-  //  backdrop-filter: blur($blur) brightness(0.25) opacity(0.15);
-  //}
-  //.navButton:hover{
-  //  backdrop-filter: blur(addBlur($blur, 50px)) brightness(1.25) opacity(0.45);
-  //}
-  //
-  //.activeRoute{
-  //  backdrop-filter: blur(35px) brightness(.25) opacity(.85);
-  //}
-
-
-
-  @mixin navButton-base {
-    background: linear-gradient(87deg, rgba(0, 0, 0, 0) 0%, rgb(29, 30, 30, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
-    transition: 0.3s ease;
+  .navButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.225s ease-in;
     color: $text;
-    width: 100%;
     height: 100%;
     padding: 0 1rem;
     border-radius: 0;
-    font-size: 1.2em;
+
     cursor: pointer;
     margin: 0;
-    backdrop-filter: blur($base-blur) brightness(0.25) opacity(0.15);
+    background: linear-gradient(87deg, rgba(0, 0, 0, .01) 0%, transparentize($accent, .675), rgba(0, 0, 0, .01) 100%);
+    backdrop-filter: blur($base-blur+10px) brightness(.275) saturate(4.5);
   }
 
-  @mixin navButton-hover {
-    backdrop-filter: blur(addBlur($base-blur, 50px)) brightness(1.25) opacity(0.45);
+  .navButton:hover{
+    backdrop-filter: blur($base-blur+50px) brightness(.525) saturate(4) contrast(1.2);
   }
-
-  @mixin navButton-active {
-    backdrop-filter: blur(addBlur($base-blur, 35px)) brightness(0.25) opacity(0.75);
-    &:hover {
-      backdrop-filter: blur(addBlur($base-blur, 100px)) brightness(.35) opacity(.95);
-    }
-  }
-
-  .navButton {
-    @include navButton-base;
-
-    &:hover {
-      @include navButton-hover;
-    }
-
-    &.activeRoute {
-      @include navButton-active;
-    }
+  .activeRoute{
+    font-size: 1.025em;
+    transition: 270ms ease-in-out;
+    color: transparent;
+    backdrop-filter: blur($base-blur+15px) brightness(.7) saturate(5.5) contrast(1.175);
+    background-image: linear-gradient($primary, $secondary);
+    background-clip: text;
   }
 
 }
-app-navbar{
 
-  nav{
+/**
+  This is the header where the navbar resides. Do not apply too much styling here, try to keep it contained in the navbar
+ */
+app-header {
+  flex: 0 0 auto;
 
-    display: block;
-    width: 100%;
-    height: 10vh;
-    margin: 0;
+  header {
+    height: 11vh;
     padding: 0;
-    //opacity: .95;
-    background: linear-gradient($blueRedGradient);
-    filter: blur(0px) brightness(1) opacity(.98);
-    backdrop-filter: blur(100px) brightness(.35) opacity(.15);
-  }
-  .navContainer{
-    //backdrop-filter: blur(0px);
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    top: 0;
     margin: 0;
-    padding: 0;
-    column-gap: 2rem;
-  }
-
-
-  .tile{
-
-    font-size: 1rem;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
   }
 }
-.glass{
-  backdrop-filter: blur(40px);
-  width: 100%;
-  height: 100%;
-}
+
+
+
+
