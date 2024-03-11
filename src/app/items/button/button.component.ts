@@ -10,6 +10,7 @@ import {routes} from "../../app.routes";
     RouterLink,
     RouterLinkActive
   ],
+  // section template
   template: `
     <div
       (click)="handleClick($event)"
@@ -25,6 +26,7 @@ import {routes} from "../../app.routes";
     `,
   ],
 })
+// section Button logic
 export class ButtonComponent {
   @Input() type: 'button' | 'routingButton' = 'button';
   @Input() buttonClass: string = 'btn';

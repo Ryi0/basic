@@ -15,10 +15,16 @@ import {ButtonComponent} from "../button/button.component";
 
     <header>
       <app-navbar *ngIf="showNavbar()"></app-navbar>
-      <button (click)="toggleNavbar()">
-        <span *ngIf="!showNavbar()">&#9776;</span>
-        <span *ngIf="showNavbar()">&#10005;</span>
-      </button>
+      <div class="HrWrap">
+        <div class="glass">
+        </div>
+      </div>
+      <div class="burgerMenuButtonWrap">
+        <app-button (click)="toggleNavbar()">
+          <span *ngIf="!showNavbar()">&#9776;</span>
+          <span *ngIf="showNavbar()">&#10005;</span>
+        </app-button>
+      </div>
 
     </header>
 
