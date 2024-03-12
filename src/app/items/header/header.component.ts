@@ -19,21 +19,23 @@ import {ButtonComponent} from "../button/button.component";
         <div class="glass">
         </div>
     </div>
-    <div class="clipTest"></div>
-      <h1>Test</h1>
-      <div class="burgerMenuButtonWrap">
-        <app-button (click)="toggleNavbar()">
-          <span *ngIf="!showNavbar()">&#9776;</span>
-          <span *ngIf="showNavbar()">&#10005;</span>
-        </app-button>
-      </div>
+
+<!--    <div class="clipTest"></div>-->
+<!--      <h1>Test</h1>-->
 <!--      <div class="burgerMenuButtonWrap">-->
 <!--        <app-button (click)="toggleNavbar()">-->
 <!--          <span *ngIf="!showNavbar()">&#9776;</span>-->
 <!--          <span *ngIf="showNavbar()">&#10005;</span>-->
 <!--        </app-button>-->
 <!--      </div>-->
-
+      <div class="menuOpener">
+      <div class="burgerMenuButtonWrap">
+        <app-button (click)="toggleNavbar()">
+          <span *ngIf="!showNavbar()">&#9776;</span>
+          <span *ngIf="showNavbar()">&#10005;</span>
+        </app-button>
+      </div>
+      </div>
     </header>
 
   `,
