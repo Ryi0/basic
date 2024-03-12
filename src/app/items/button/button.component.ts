@@ -12,7 +12,7 @@ import {routes} from "../../app.routes";
   ],
   // section template
   template: `
-    <div
+    <div class="b"
       (click)="handleClick($event)"
       [ngClass]="buttonClass"
       [routerLink]="btnRoute()"

@@ -1,6 +1,40 @@
 //@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 //@import "variables";
 //
+
+//.clipTest{
+//  display: flex;
+//  flex-direction: column;
+//  justify-content: space-between;
+//  align-items: center;
+//  height: 30rem;
+//  width: 20rem;
+//  position: relative;
+//}
+//
+//.clipTest::before{
+//  content: '';
+//  $clipSpace: .3rem;
+//  $calculatedClipSpace: calc(100% - $clipSpace);
+//
+//  background-color: crimson;
+//  position: absolute;
+//  height: 100%;
+//  width: 100%;
+//
+//  clip-path: polygon(
+//      evenodd,
+//      0% 0%,
+//      100% 0%,
+//      100% 100%,
+//      0% 100%,
+//      0% 0%,
+//      $clipSpace $clipSpace,
+//      $calculatedClipSpace $clipSpace,
+//      $calculatedClipSpace $calculatedClipSpace,
+//      $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
+//  );
+//}
 //$base-blur: 5px;
 //$blur:100px;
 //

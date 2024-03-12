@@ -81,18 +81,12 @@ To see what exactly it contains, uncomment *101
   .navContainer::before {
    // background: rgba(0, 0, 0, 0.34);
     content: '';
-    /* This layer is positioned between some element and its background. */
     position: absolute;
-    /* This should not affect the contents of the container. */
     z-index: -1;
-    /* The blur size should be anything below `0` so it will extend to the outside. */
     inset: $NavHeight - (($NavHeight + $HrHeight)  * 1.325);
     //mask:   linear-gradient(to top, transparent 0%, black 25% 75%, transparent 100%),linear-gradient(to left, transparent 0%, black 25% 75%, transparent 100%);
     mask: linear-gradient(to bottom, black 95%, transparent 100%);
     backdrop-filter: blur($base-blur+10) ;
-    /* This merges the masks above so only the overlapping pixels are rendered. */
-    //mask-composite: intersect;
-    /* This creates the illusion of a fade-out mask. */
   }
 
 
@@ -141,39 +135,7 @@ To see what exactly it contains, uncomment *101
 
 
 }
-.clipTest{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 30rem;
-  width: 20rem;
-  position: relative;
-}
 
-.clipTest::before{
-  content: '';
-  $clipSpace: .3rem;
-  $calculatedClipSpace: calc(100% - $clipSpace);
-
-  background-color: crimson;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-
-   clip-path: polygon(
-       evenodd,
-       0% 0%,
-       100% 0%,
-       100% 100%,
-       0% 100%,
-       0% 0%,
-       $clipSpace $clipSpace,
-       $calculatedClipSpace $clipSpace,
-       $calculatedClipSpace $calculatedClipSpace,
-       $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
-  );
-}
 
 
 
@@ -181,65 +143,99 @@ To see what exactly it contains, uncomment *101
 
 .burgerMenuButtonWrap{
   display: flex;
-
- // background: rgb(255, 0, 0);
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-
+  //filter: drop-shadow(100px 100px 1px #000000);
+  box-shadow: 2px 2px 40px 4px #000000;
   app-button{
 
-    font-size: 1.25rem;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 1.75rem;
+    font-weight: bolder;
+   // filter: drop-shadow(15px 15px 1px #000000);
+  //filter: drop-shadow(75px 75px 1px #000000);
     .btn{
 
-      color: #444cf7;
+      filter: initial;
+      align-items: center;
+      color: $primary;
       height: 100%;
       //padding-top: 100%;
       //padding: .1ch .5ch;
       width: 100%;
     // border: 2px solid red;
-    padding: 0;
+      padding: 0;
+      transition: 175ms ease-in-out;
     }
-    width: 100%;
-    height: 100%;
-   padding: 0;
-  //  border: 4px solid springgreen;
+    .btn:hover{
+      color: $accent;
+    }
+    .btn::before{ //Custom outline
+      $clipSpace: .15em;
+      filter: initial;
+      $calculatedClipSpace: calc(100% - $clipSpace);
+      content: '';
+      background-color: rgba(255,255,255,0.1);
+      //background-color: crimson;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      backdrop-filter: blur($base-blur + 10) saturate(4) brightness(1.5) contrast(1.75);
+      clip-path: polygon(
+          evenodd,
+          0% 0%,
+          100% 0%,
+          100% 100%,
+          0% 100%,
+          0% 0%,
+          $clipSpace $clipSpace,
+          $calculatedClipSpace $clipSpace,
+          $calculatedClipSpace $calculatedClipSpace,
+          $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
+      );
+
+    }
+
   }
+
 }
-
-.burgerMenuButtonWrap::before{ //Custom outline
-
-  $clipSpace: .2rem;
-  $calculatedClipSpace: calc(100% - $clipSpace);
-  content: '';
-  //background-color: rgba(255,255,255,0.01);
-  //background-color: crimson;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  backdrop-filter: blur($base-blur + 150);
-  clip-path: polygon(
-      evenodd,
-      0% 0%,
-      100% 0%,
-      100% 100%,
-      0% 100%,
-      0% 0%,
-      $clipSpace $clipSpace,
-      $calculatedClipSpace $clipSpace,
-      $calculatedClipSpace $calculatedClipSpace,
-      $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
-  );
-}
-
 .menuOpener{ //why is a button so complicated?
   padding: 0;
   margin: 0;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   position: absolute;
 }
+//.burgerMenuButtonWrap::before{ //Custom outline
+//
+//  $clipSpace: .2rem;
+//  $calculatedClipSpace: calc(100% - $clipSpace);
+//  content: '';
+//  background-color: rgba(255,255,255,0.1);
+//  //background-color: crimson;
+//  position: absolute;
+//  height: 100%;
+//  width: 100%;
+//  backdrop-filter: blur($base-blur + 150);
+//  clip-path: polygon(
+//      evenodd,
+//      0% 0%,
+//      100% 0%,
+//      100% 100%,
+//      0% 100%,
+//      0% 0%,
+//      $clipSpace $clipSpace,
+//      $calculatedClipSpace $clipSpace,
+//      $calculatedClipSpace $calculatedClipSpace,
+//      $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
+//  );
+//}
+
+
 
 //.btn::before{
 //  content: '';
@@ -366,14 +362,14 @@ app-header {
     .tile {
       //flex-grow: 1;
       //width: 100%;
-      //height: 100%; // Allow vertical expansion on mobile
+    //  height: 100%; // Allow vertical expansion on mobile
       padding-bottom: 0px;
     }
   }
 
   app-button {
     .navButton {
-      font-size: 1.2rem;
+      //font-size: 1.2rem;
       // padding: 0.5rem; // Reduce padding on mobile
       // Reduce font size on mobile
     }

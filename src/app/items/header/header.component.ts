@@ -31,8 +31,8 @@ import {ButtonComponent} from "../button/button.component";
       <div class="menuOpener">
       <div class="burgerMenuButtonWrap">
         <app-button (click)="toggleNavbar()">
-          <span *ngIf="!showNavbar()">&#9776;</span>
-          <span *ngIf="showNavbar()">&#10005;</span>
+          <ng-container *ngIf="!showNavbar()">&#9776;</ng-container>
+          <ng-container *ngIf="showNavbar()">&#10005;</ng-container>
         </app-button>
       </div>
       </div>
