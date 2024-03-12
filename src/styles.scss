@@ -209,16 +209,16 @@ To see what exactly it contains, uncomment *101
 }
 
 .burgerMenuButtonWrap::before{ //Custom outline
-  content: '';
+
   $clipSpace: .2rem;
   $calculatedClipSpace: calc(100% - $clipSpace);
-  padding: 0;
-  margin: 0;
-  background-color: crimson;
+  content: '';
+  //background-color: rgba(255,255,255,0.01);
+  //background-color: crimson;
   position: absolute;
   height: 100%;
   width: 100%;
-
+  backdrop-filter: blur($base-blur + 150);
   clip-path: polygon(
       evenodd,
       0% 0%,
