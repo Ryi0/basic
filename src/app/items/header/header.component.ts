@@ -14,6 +14,14 @@ import {ButtonComponent} from "../button/button.component";
   template: `
 
     <header>
+      <div class="menuOpener">
+        <div class="burgerMenuButtonWrap">
+          <app-button (click)="toggleNavbar()">
+            <ng-container *ngIf="!showNavbar()">&#9776;</ng-container>
+            <ng-container *ngIf="showNavbar()">&#10005;</ng-container>
+          </app-button>
+        </div>
+      </div>
       <app-navbar *ngIf="showNavbar()"></app-navbar>
       <div class="HrWrap">
         <div class="glass">
@@ -28,14 +36,7 @@ import {ButtonComponent} from "../button/button.component";
 <!--          <span *ngIf="showNavbar()">&#10005;</span>-->
 <!--        </app-button>-->
 <!--      </div>-->
-      <div class="menuOpener">
-      <div class="burgerMenuButtonWrap">
-        <app-button (click)="toggleNavbar()">
-          <ng-container *ngIf="!showNavbar()">&#9776;</ng-container>
-          <ng-container *ngIf="showNavbar()">&#10005;</ng-container>
-        </app-button>
-      </div>
-      </div>
+
     </header>
 
   `,
