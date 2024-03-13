@@ -52,7 +52,9 @@ main{
 
 // section app-navbar
 app-navbar{
-/**
+
+
+  /**
   This positions itself outside the liner div amd outside the navContainer div and serves as an intermediate
   between the content and the navbar.
   The padding is what is used to size the div
@@ -82,7 +84,7 @@ To see what exactly it contains, uncomment *101
    // background: rgba(0, 0, 0, 0.34);
     content: '';
     position: absolute;
-    z-index: -1;
+    z-index: -100;
     inset: $NavHeight - (($NavHeight + $HrHeight)  * 1.325);
     //mask:   linear-gradient(to top, transparent 0%, black 25% 75%, transparent 100%),linear-gradient(to left, transparent 0%, black 25% 75%, transparent 100%);
     mask: linear-gradient(to bottom, black 95%, transparent 100%);
@@ -315,8 +317,12 @@ app-button{
  */
 // section app-header
 app-header {
+  z-index: 1000;
+  position: fixed;
+  user-select: none;
   flex: 0 0 auto;
   .HrWrap{
+
     //display: inline-block;
     // background: $dar;
     // mix-blend-mode: hard-light;
@@ -339,9 +345,144 @@ app-header {
     top: 0;
     margin: 0;
   }
+}
+
+
+
+// section projects
+app-projects{
+  .grid-container {
+    display: flex;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    //backdrop-filter: blur(10px);
+    //filter: drop-shadow(100px 100px 1px #000000);
+
+   // box-shadow: 2px 2px 40px 4px rgba(255, 255, 255, 0.09);
+  }
+
+
+
+  .grid-container::after{ //Custom outline
+    $clipSpace: .3em;
+    filter: initial;
+    $calculatedClipSpace: calc(100% - $clipSpace);
+    content: '';
+   // background-color: rgba(0, 0, 0, 0.1);
+    //background-color: crimson;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur($base-blur + 10) saturate(1) brightness(1.5) contrast(1.75);
+    clip-path: polygon(
+        evenodd,
+        0% 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        0% 0%,
+        $clipSpace $clipSpace,
+        $calculatedClipSpace $clipSpace,
+        $calculatedClipSpace $calculatedClipSpace,
+        $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
+    );
+  }
+
+  .grid-container::before {
+    z-index: 0;
+    // background: rgba(0, 0, 0, 0.34);
+    content: '';
+    position: absolute;
+
+    inset: $NavHeight - (($NavHeight + $HrHeight)  * 1.325);
+    mask:   linear-gradient(to top, transparent 0%, black 25% 75%, transparent 100%),linear-gradient(to left, transparent 0%, black 25% 75%, transparent 100%);
+    //mask: linear-gradient(to bottom, black 95%, transparent 100%);
+    backdrop-filter: blur($base-blur+10) ;
+  }
+  .grid{
+    display: grid;
+    position: relative;
+    grid-template-columns: auto auto auto;
+
+    width: 100%;
+    height: 100%;
+    //grid-gap: 1em;
+    //box-shadow: 2px 2px 40px 4px rgba(255, 255, 255, 0.09);
+    margin: 0;
+    padding: 1em;
+   // background-color: rgba(0, 0, 0, 0.24);
+    //backdrop-filter: blur(10px);
+
+
+  }
+
+  .grid::before{
+    $clipSpace: 1em;
+    filter: initial;
+    $calculatedClipSpace: calc(100% - $clipSpace);
+    content: '';
+    background-color: rgba(255, 255, 255, 0.1);
+    //background-color: crimson;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur($base-blur + 10) saturate(.71) brightness(.7) contrast(1.15);
+    clip-path: polygon(
+        evenodd,
+        0% 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        0% 0%,
+        $clipSpace $clipSpace,
+        $calculatedClipSpace $clipSpace,
+        $calculatedClipSpace $calculatedClipSpace,
+        $clipSpace $calculatedClipSpace, $clipSpace $clipSpace
+    );
+
+
+  }
+
+  .grid-item {
+    transition: 250ms;
+    box-sizing: border-box;
+    border: 5px solid $accent;
+    background-color: $background;
+    // border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .grid-item:after{
+    z-index: -1;
+    //background: rgba(0, 0, 0, 0.34);
+    content: '';
+    position: absolute;
+
+    inset: $NavHeight - (($NavHeight + $HrHeight)  * 1.325);
+    mask:   linear-gradient(to top, transparent 0%, black 25% 75%, transparent 100%),linear-gradient(to left, transparent 0%, black 25% 75%, transparent 100%);
+    //mask: linear-gradient(to bottom, black 95%, transparent 100%);
+    backdrop-filter: blur($base-blur+10) ;
+
+  }
+
+  .grid-item:hover{
+   // border: 5px solid $primary;
+   // color: $background;
+    background-color: $accent;
+    cursor: pointer;
+  }
 
 
 }
+
 
 
 // section media queries
@@ -358,7 +499,7 @@ app-header {
     }
     .navContainer {
       flex-direction: column;
-      height: $NavHeight; // Allow vertical expansion on mobile
+      height: $NavHeight ; // Allow vertical expansion on mobile
     }
     .tile {
       //flex-grow: 1;
